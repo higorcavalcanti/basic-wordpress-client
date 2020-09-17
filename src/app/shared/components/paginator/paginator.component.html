@@ -1,0 +1,14 @@
+<pagination
+  *ngIf="response"
+  [(ngModel)]="page"
+  [totalItems]="response?.size"
+  [itemsPerPage]="itemsPerPage"
+  [maxSize]="maxSize"
+
+  [firstText]="firstText"
+  [nextText]="nextText"
+  [previousText]="previousText"
+  [lastText]="lastText"
+
+  (pageChanged)="pageChanged($event)"
+></pagination>

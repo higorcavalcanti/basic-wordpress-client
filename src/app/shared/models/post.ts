@@ -5,9 +5,11 @@ export interface Post {
   slug: string;
   link: string;
   permalink: string;
+
   title: string;
   headline: string;
   excerpt: string;
+  content: string;
 
   published: string;
   modified: string;

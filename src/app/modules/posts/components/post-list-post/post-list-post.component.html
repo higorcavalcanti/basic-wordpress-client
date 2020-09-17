@@ -1,7 +1,8 @@
 <div>
-  <h2>
-    {{post?.title}}
-  </h2>
+  <a [routerLink]="routerLink">
+    <h2>{{post?.title}}</h2>
+  </a>
+
   <div>
     {{post?.excerpt}}
   </div>

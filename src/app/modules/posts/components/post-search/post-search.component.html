@@ -1,0 +1,16 @@
+<form [formGroup]="form" (ngSubmit)="search()">
+  <div class="form-group">
+
+    <div class="input-group m-2">
+
+      <input type="text" class="form-control" id="search-input" placeholder="Pesquisar postagens..." formControlName="search">
+
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="submit">
+          Pesquisar
+        </button>
+      </div>
+    </div>
+
+  </div>
+</form>

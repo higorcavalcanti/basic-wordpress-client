@@ -25,7 +25,7 @@
     "@angular/platform-server": "~10.0.14",
     "@angular/router": "~10.0.14",
     "@nguniversal/express-engine": "^10.0.2",
-    "bootstrap": "4.1.1",
+    "bootstrap": "^4.5.2",
     "express": "^4.15.2",
     "ngx-bootstrap": "^6.1.0",
     "rxjs": "~6.5.5",

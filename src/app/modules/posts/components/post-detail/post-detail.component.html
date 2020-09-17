@@ -1,1 +1,16 @@
-<p>post-detail works!</p>
+<app-loading *ngIf="loading"></app-loading>
+<app-error *ngIf="error">
+  Falha ao carregar post!<br>
+  <a (click)="loadPost()">Clique aqui</a> para tentar novamente!
+</app-error>
+
+<article *ngIf="post">
+  <h2>{{post?.title}}</h2>
+
+  <!--  Headline-->
+  <p>
+    {{ post?.headline }}
+  </p>
+
+  <div [innerHTML]="post?.content"></div>
+</article>

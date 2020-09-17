@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PostsComponent } from "./components/posts/posts.component";
-import { PostListComponent } from "./components/post-list/post-list.component";
+import { PostListComponent, PostListType } from "./components/post-list/post-list.component";
 import { PostDetailComponent } from "./components/post-detail/post-detail.component";
 
 const routes: Routes = [
@@ -16,11 +16,26 @@ const routes: Routes = [
       },
       {
         path: 'list',
+        data: {
+          type: PostListType.LAST_POSTS
+        },
         component: PostListComponent
       },
       {
-        path: ':slug',
-        component: PostDetailComponent
+        path: 'search',
+        data: {
+          type: PostListType.SEARCH
+        },
+        component: PostListComponent
+      },
+      {
+        path: ':id',
+        component: PostDetailComponent,
+        children: [
+          {
+            path: ':slug'
+          }
+        ]
       }
     ]
   }
