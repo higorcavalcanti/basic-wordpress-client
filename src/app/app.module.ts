@@ -14,7 +14,7 @@ import { HttpClientModule } from "@angular/common/http";
     DefaultLayoutComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
