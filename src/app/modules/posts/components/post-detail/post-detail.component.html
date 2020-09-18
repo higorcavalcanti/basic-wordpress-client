@@ -4,13 +4,41 @@
   <a (click)="loadPost()">Clique aqui</a> para tentar novamente!
 </app-error>
 
-<article *ngIf="post">
-  <h2>{{post?.title}}</h2>
+<article itemscope *ngIf="post">
+  <header>
+    <h1>{{post?.title}}</h1>
 
-  <!--  Headline-->
-  <p>
-    {{ post?.headline }}
-  </p>
+    <div class="post-info">
+      <span rel="author">
+        {{post?.author?.name}}
+      </span>
 
-  <div [innerHTML]="post?.content"></div>
+      <time itemprop="dateCreated datePublished">
+        {{ post?.published | date }}
+      </time>
+
+      <span class="post-categories">
+        <ng-container *ngFor="let category of post?.categories">
+          {{ category?.name }}
+        </ng-container>
+      </span>
+    </div>
+
+    <p itemprop="headline" class="post-headline">
+      {{ post?.headline }}
+    </p>
+  </header>
+
+  <app-post-detail-featured-media [post]="post"></app-post-detail-featured-media>
+
+  <section itemprop="articleBody">
+    <div class="post-content" [innerHTML]="post?.content"></div>
+  </section>
+
+  <!--  Bio-->
+  <app-post-detail-biography [post]="post"></app-post-detail-biography>
+
+  <!--Author-->
+  <app-post-detail-author [post]="post"></app-post-detail-author>
+
 </article>

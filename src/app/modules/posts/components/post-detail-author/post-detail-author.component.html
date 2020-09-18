@@ -1,0 +1,12 @@
+<div class="post-author" itemprop="author publisher" itemscope>
+
+  <div class="post-author-image">
+    <img [src]="post?.author?.picture" [alt]="post?.author?.name">
+  </div>
+
+  <div class="post-author-name" itemprop="name">
+    {{ post?.author?.name }}
+  </div>
+
+  <div class="post-author-biography" [innerHTML]="post?.author?.description"></div>
+</div>

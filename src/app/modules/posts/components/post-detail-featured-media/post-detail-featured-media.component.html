@@ -1,0 +1,9 @@
+<div>
+  <picture>
+    <source [srcset]="post?.featured_media['big-size']" media="(min-width: 1000px)">
+    <source [srcset]="post?.featured_media?.large" media="(min-width: 600px)">
+    <source [srcset]="post?.featured_media?.medium" media="(min-width: 400px)">
+    <source [srcset]="post?.featured_media?.medium_large" media="(min-width: 200px)">
+    <img [alt]="post?.title" [src]="post?.featured_media?.thumbnail">
+  </picture>
+</div>

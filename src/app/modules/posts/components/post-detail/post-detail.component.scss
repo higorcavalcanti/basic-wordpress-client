@@ -1,0 +1,22 @@
+:host {
+  article {
+    header {
+
+      .post-info {
+        margin-bottom: 1em;
+
+        * {
+          $margin: 0.5em;
+          margin-right: $margin;
+
+          &:not(:last-child) {
+            &:after {
+              margin-left: $margin;
+              content: ' - ';
+            }
+          }
+        }
+      }
+    }
+  }
+}

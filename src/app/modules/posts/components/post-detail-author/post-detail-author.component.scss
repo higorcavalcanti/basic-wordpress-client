@@ -1,0 +1,22 @@
+:host {
+  .post-author {
+
+    .post-author-image {
+      img {
+        float: left;
+        max-width: 150px;
+        margin-right: 1em;
+      }
+    }
+
+    .post-author-name {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-bottom: 1em;
+    }
+
+    .post-author-biography {
+      text-align: justify;
+    }
+  }
+}
