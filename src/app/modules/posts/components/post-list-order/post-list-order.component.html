@@ -1,0 +1,8 @@
+<div class="form-group">
+  <label for="post-list-order">Ordenar por:</label>
+
+  <select id="post-list-order" [(ngModel)]="orderBy" (ngModelChange)="updateRoute()">
+    <option [value]="PostOrderbyEnum.date">Data de publicação</option>
+    <option [value]="PostOrderbyEnum.relevance">Mais Relevantes</option>
+  </select>
+</div>

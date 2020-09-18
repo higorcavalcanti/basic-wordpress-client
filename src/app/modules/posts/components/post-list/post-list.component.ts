@@ -73,13 +73,11 @@ export class PostListComponent implements OnInit {
 
     this.wordpressService.posts( this.postsOptions ).subscribe(
       response => {
-        debugger
         this.postsResponse = response;
         this.isLoading = false;
         this.isError = false;
       },
-      err => {
-        debugger
+      () => {
         this.isLoading = false;
         this.isError = true;
       }

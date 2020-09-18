@@ -16,7 +16,7 @@ export class WordpressService {
   ) { }
 
   posts(options?: PostsRequestOptions) {
-    const params = this.getParams( options );
+    const params = WordpressService.getParams( options );
     return this.http.get<PostsResponse>(this.API_URL + 'v2/posts', { params });
   }
 
@@ -24,13 +24,16 @@ export class WordpressService {
     return this.http.get<Post>(this.API_URL + 'v1/posts/' + id);
   }
 
-  private getParams(options?: PostsRequestOptions): HttpParams {
+  private static getParams(options?: PostsRequestOptions): HttpParams {
     let params = new HttpParams();
     if ( options.page ) {
       params = params.append('page', options.page.toString())
     }
     if ( options.search ) {
       params = params.append('search', options.search);
+    }
+    if ( options.orderby ) {
+      params = params.append('orderby', options.orderby)
     }
     return params;
   }

@@ -10,14 +10,6 @@ export class PostDetailFeaturedMediaComponent implements OnInit {
 
   @Input() post: Post;
 
-  get src(): string {
-    return this.post?.featured_media?.large;
-  }
-
-  get srcset(): string {
-    return '';
-  }
-
   constructor() { }
 
   ngOnInit(): void {
