@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WordpressService } from "../../../../shared/services/wordpress.service";
 import { ActivatedRoute } from "@angular/router";
 import { Post } from "../../../../shared/models/post";
+import { SeoService } from "../../../../shared/services/seo.service";
 
 @Component({
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',
   styleUrls: ['./post-detail.component.scss']
 })
-export class PostDetailComponent implements OnInit {
+export class PostDetailComponent implements OnInit, OnDestroy {
 
   post_id: string;
   post: Post;
@@ -18,11 +19,16 @@ export class PostDetailComponent implements OnInit {
 
   constructor(
     private wordpressService: WordpressService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private seoService: SeoService,
   ) { }
 
   ngOnInit(): void {
     this.listenRouteParams();
+  }
+
+  ngOnDestroy() {
+    this.seoService.removePostMeta( this.post );
   }
 
   listenRouteParams() {
@@ -44,6 +50,8 @@ export class PostDetailComponent implements OnInit {
         this.post = post;
         this.loading = false;
         this.error = false;
+
+        this.seoService.setPostMeta( post );
       },
       err => {
         this.error = true;

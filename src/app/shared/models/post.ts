@@ -19,6 +19,9 @@ export interface Post {
 
   featured_media: PostFeaturedMedia;
   author: PostAuthor;
-
   categories: Category[];
+
+  metas: {
+    [s: string]: string | number;
+  }
 }
