@@ -1,6 +1,23 @@
 :host {
-  main.content {
-    max-width: 1024px;
-    margin: auto;
+  div {
+    background-color: #cccccc;
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      box-shadow: 0 5px 9px 2px #b5b5b5;
+    }
+
+    main.content {
+      max-width: 1024px;
+      margin: 5em auto 1em auto;
+      padding: 2em;
+
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 13px 11px 20px 4px #b5b5b5;
+    }
   }
 }

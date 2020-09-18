@@ -37,10 +37,12 @@ export class PostSearchComponent implements OnInit {
   listenRouteData() {
     this.route.queryParams.subscribe(params => {
       const search = params[ this.SEARCH_KEY ];
-      if ( search?.length ) {
-        const query = decodeURIComponent(search);
-        this.searchInput?.setValue(query);
+      if ( !search?.length ) {
+        this.searchInput?.reset();
+        return;
       }
+      const query = decodeURIComponent(search);
+      this.searchInput?.setValue(query);
     });
   }
 

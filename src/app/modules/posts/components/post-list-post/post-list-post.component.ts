@@ -11,7 +11,7 @@ export class PostListPostComponent implements OnInit {
   @Input() post: Post;
 
   get routerLink(): string {
-    return '/posts/' + this.post?.id; // + '/' + this.post?.slug;
+    return '/posts/' + this.post?.id + '/' + this.post?.slug;
   }
 
   constructor() { }

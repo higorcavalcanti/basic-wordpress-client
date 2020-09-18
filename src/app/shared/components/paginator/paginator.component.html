@@ -1,5 +1,5 @@
 <pagination
-  *ngIf="response"
+  *ngIf="response?.size"
   [(ngModel)]="page"
   [totalItems]="response?.size"
   [itemsPerPage]="itemsPerPage"

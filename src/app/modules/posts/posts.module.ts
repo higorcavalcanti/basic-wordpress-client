@@ -16,7 +16,17 @@ import { PostListOrderComponent } from './components/post-list-order/post-list-o
 
 
 @NgModule({
-  declarations: [PostListComponent, PostDetailComponent, PostsComponent, PostListPostComponent, PostSearchComponent, PostDetailFeaturedMediaComponent, PostDetailBiographyComponent, PostDetailAuthorComponent, PostListOrderComponent],
+  declarations: [
+    PostListComponent,
+    PostDetailComponent,
+    PostsComponent,
+    PostListPostComponent,
+    PostSearchComponent,
+    PostDetailFeaturedMediaComponent,
+    PostDetailBiographyComponent,
+    PostDetailAuthorComponent,
+    PostListOrderComponent,
+  ],
   imports: [
     CommonModule,
     PostsRoutingModule,
