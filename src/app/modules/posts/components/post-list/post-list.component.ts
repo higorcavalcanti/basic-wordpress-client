@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { WordpressService } from "../../../../shared/services/wordpress.service";
 import { ActivatedRoute } from "@angular/router";
-import { PostsRequestOptions } from "../../../../shared/interfaces/posts-request-options";
 import { startWith } from "rxjs/operators";
 import { combineLatest } from "rxjs";
 import { PostsResponse } from "../../../../shared/interfaces/posts-response";
+import { PostsRequestOptions } from "../../../../shared/interfaces/posts-request-options";
+import { WordpressTransferStateService } from "../../../../shared/services/wordpress-transfer-state.service";
 
 export enum PostListType {
   LAST_POSTS,
@@ -35,7 +36,7 @@ export class PostListComponent implements OnInit {
   }
 
   constructor(
-    private wordpressService: WordpressService,
+    private wordpressService: WordpressTransferStateService,
     private route: ActivatedRoute
   ) { }
 
@@ -49,16 +50,8 @@ export class PostListComponent implements OnInit {
     const queryParams$ = this.route.queryParams.pipe( startWith() );
     combineLatest([data$, queryParams$]).subscribe(response => {
       const [data, queryParams] = response;
-
       this.type = data?.type;
-
-      this.postsOptions = {};
-      for( const key in queryParams ) {
-        if ( !queryParams.hasOwnProperty(key) ) {
-          return;
-        }
-        this.postsOptions[ key ] = decodeURIComponent( queryParams[key] );
-      }
+      this.postsOptions = WordpressService.getRequestOptionsByParams( queryParams );
       this.getPosts();
     });
   }

@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { PostsResponse } from "../interfaces/posts-response";
 import { PostsRequestOptions } from "../interfaces/posts-request-options";
 import { Post } from "../models/post";
+import { Params } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class WordpressService {
   protected readonly API_URL = 'https://api.beta.mejorconsalud.com/wp-json/mc/';
 
   constructor(
-    protected http: HttpClient
+    protected http: HttpClient,
   ) { }
 
   posts(options?: PostsRequestOptions) {
@@ -24,7 +25,7 @@ export class WordpressService {
     return this.http.get<Post>(this.API_URL + 'v1/posts/' + id);
   }
 
-  private static getParams(options?: PostsRequestOptions): HttpParams {
+  static getParams(options?: PostsRequestOptions): HttpParams {
     let params = new HttpParams();
     if ( options.page ) {
       params = params.append('page', options.page.toString())
@@ -36,5 +37,16 @@ export class WordpressService {
       params = params.append('orderby', options.orderby)
     }
     return params;
+  }
+
+  static getRequestOptionsByParams(queryParams: Params): PostsRequestOptions {
+    const options: PostsRequestOptions = {};
+    for( const key in queryParams ) {
+      if ( !queryParams.hasOwnProperty(key) ) {
+        return;
+      }
+      options[ key ] = decodeURIComponent( queryParams[key] );
+    }
+    return options;
   }
 }

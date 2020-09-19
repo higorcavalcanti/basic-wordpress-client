@@ -18,7 +18,7 @@ import { ErrorComponent } from './components/error/error.component';
   imports: [
     CommonModule,
     PaginationModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class SharedModule { }

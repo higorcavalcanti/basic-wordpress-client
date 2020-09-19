@@ -17,7 +17,6 @@ export class SeoService {
   setPostMeta(post: Post) {
     const tags = SeoService.getPostTags(post);
     const title = [post?.title, this.defaultTitle].filter(x => x?.length).join(' - ');
-    debugger;
     this.metaService.addTags( tags );
     this.titleService.setTitle( title );
   }

@@ -24,7 +24,6 @@ export class PostListOrderComponent implements OnInit {
 
   listenToRouteParams() {
     this.route.queryParams.subscribe(queryParams => {
-      debugger
       const orderBy = queryParams?.orderby;
       if ( orderBy !== undefined ) {
         this.orderBy = orderBy;

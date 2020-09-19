@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { WordpressService } from "../../../../shared/services/wordpress.service";
 import { ActivatedRoute } from "@angular/router";
 import { Post } from "../../../../shared/models/post";
 import { SeoService } from "../../../../shared/services/seo.service";
+import { WordpressTransferStateService } from "../../../../shared/services/wordpress-transfer-state.service";
 
 @Component({
   selector: 'app-post-detail',
@@ -18,7 +18,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   error: boolean;
 
   constructor(
-    private wordpressService: WordpressService,
+    private wordpressService: WordpressTransferStateService,
     private route: ActivatedRoute,
     private seoService: SeoService,
   ) { }
@@ -33,7 +33,6 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
   listenRouteParams() {
     this.route.params.subscribe(params => {
-      console.log(params);
       this.post_id = params?.id;
       if ( this.post_id ) {
         this.loadPost();
@@ -46,14 +45,13 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     this.error = false;
     this.wordpressService.post( this.post_id ).subscribe(
       post => {
-        console.log('post', post);
         this.post = post;
         this.loading = false;
         this.error = false;
 
         this.seoService.setPostMeta( post );
       },
-      err => {
+      () => {
         this.error = true;
         this.loading = false;
       }
