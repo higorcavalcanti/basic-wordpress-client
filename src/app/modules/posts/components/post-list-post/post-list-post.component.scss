@@ -1,19 +1,12 @@
 :host {
+  margin: 100px;
 
-  article {
-    margin: 30px 10px;
+  .post-image {
 
-    .post-image {
+    img {
       float: left;
-      width: 100px;
-      height: 100px;
-      margin-right: 10px;
-
-      background-color: #cccccc;
-
-      img {
-        width: 100%;
-      }
+      max-width: 100px;
+      margin: 0 1em;
     }
   }
 }

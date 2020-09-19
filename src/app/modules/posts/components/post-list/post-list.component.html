@@ -14,8 +14,4 @@
   [post]="post"
 ></app-post-list-post>
 
-<div *ngIf="!isError && postsResponse?.size === 0" class="empty-response my-5 text-center">
-  Não existem artigos relacionados ao termo pesquisado!
-</div>
-
 <app-paginator [response]="postsResponse"></app-paginator>

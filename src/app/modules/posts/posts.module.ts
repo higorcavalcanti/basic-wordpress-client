@@ -13,6 +13,7 @@ import { PostDetailFeaturedMediaComponent } from './components/post-detail-featu
 import { PostDetailBibliographyComponent } from './components/post-detail-bibliography/post-detail-bibliography.component';
 import { PostDetailAuthorComponent } from './components/post-detail-author/post-detail-author.component';
 import { PostListOrderComponent } from './components/post-list-order/post-list-order.component';
+import { PostDetailContentComponent } from './components/post-detail-content/post-detail-content.component';
 
 
 @NgModule({
@@ -23,9 +24,10 @@ import { PostListOrderComponent } from './components/post-list-order/post-list-o
     PostListPostComponent,
     PostSearchComponent,
     PostDetailFeaturedMediaComponent,
-    PostDetailBiographyComponent,
+    PostDetailBibliographyComponent,
     PostDetailAuthorComponent,
     PostListOrderComponent,
+    PostDetailContentComponent
   ],
   imports: [
     CommonModule,

@@ -2,7 +2,7 @@
   Mostrando {{ itemsPerPage }} de {{ response?.size }} postagens
 </div>
 <pagination
-  *ngIf="response?.size"
+  *ngIf="response"
   [(ngModel)]="page"
   [totalItems]="response?.size"
   [itemsPerPage]="itemsPerPage"
