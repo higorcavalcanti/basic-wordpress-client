@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WordpressService } from "../../../../shared/services/wordpress.service";
 import { ActivatedRoute } from "@angular/router";
-import { startWith } from "rxjs/operators";
+import { debounceTime, startWith } from "rxjs/operators";
 import { combineLatest } from "rxjs";
 import { PostsResponse } from "../../../../shared/interfaces/posts-response";
 import { PostsRequestOptions } from "../../../../shared/interfaces/posts-request-options";
@@ -48,7 +48,9 @@ export class PostListComponent implements OnInit {
 
     const data$ = this.route.data.pipe( startWith() );
     const queryParams$ = this.route.queryParams.pipe( startWith() );
-    combineLatest([data$, queryParams$]).subscribe(response => {
+    combineLatest([data$, queryParams$]).pipe(
+      debounceTime(10)
+    ).subscribe(response => {
       const [data, queryParams] = response;
       this.type = data?.type;
       this.postsOptions = WordpressService.getRequestOptionsByParams( queryParams );

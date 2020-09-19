@@ -26,15 +26,14 @@ export class WordpressService {
   }
 
   static getParams(options?: PostsRequestOptions): HttpParams {
-    let params = new HttpParams();
-    if ( options.page ) {
-      params = params.append('page', options.page.toString())
+    let params = new HttpParams()
+      .append('page', options?.page?.toString() || '1')
+
+    if ( options?.search ) {
+      params = params.append('search', options?.search);
     }
-    if ( options.search ) {
-      params = params.append('search', options.search);
-    }
-    if ( options.orderby ) {
-      params = params.append('orderby', options.orderby)
+    if ( options?.orderby ) {
+      params = params.append('orderby', options?.orderby)
     }
     return params;
   }
