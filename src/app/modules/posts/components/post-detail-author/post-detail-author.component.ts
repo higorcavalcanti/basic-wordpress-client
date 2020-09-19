@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from "../../../../shared/models/post";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-post-detail-author',
@@ -8,9 +9,19 @@ import { Post } from "../../../../shared/models/post";
 })
 export class PostDetailAuthorComponent implements OnInit {
 
-  @Input() post: Post;
+  private _post: Post;
+  @Input()
+  get post(): Post { return this._post }
+  set post(post: Post) {
+    this._post = post;
+    this.description = this.sanitizer.bypassSecurityTrustHtml( post?.author?.description );
+  }
 
-  constructor() { }
+  description: SafeHtml;
+
+  constructor(
+    private sanitizer: DomSanitizer
+  ) { }
 
   ngOnInit(): void {
   }

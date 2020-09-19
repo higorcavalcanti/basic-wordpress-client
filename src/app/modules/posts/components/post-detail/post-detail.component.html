@@ -31,12 +31,10 @@
 
   <app-post-detail-featured-media [post]="post"></app-post-detail-featured-media>
 
-  <section itemprop="articleBody">
-    <div class="post-content" [innerHTML]="post?.content"></div>
-  </section>
+  <app-post-detail-content [post]="post"></app-post-detail-content>
 
   <!--  Bio-->
-  <app-post-detail-biography [post]="post"></app-post-detail-biography>
+  <app-post-detail-bibliography [post]="post"></app-post-detail-bibliography>
 
   <!--Author-->
   <app-post-detail-author [post]="post"></app-post-detail-author>

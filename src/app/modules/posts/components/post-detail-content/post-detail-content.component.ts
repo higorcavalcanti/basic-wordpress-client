@@ -3,22 +3,20 @@ import { Post } from "../../../../shared/models/post";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-post-list-post',
-  templateUrl: './post-list-post.component.html',
-  styleUrls: ['./post-list-post.component.scss']
+  selector: 'app-post-detail-content',
+  templateUrl: './post-detail-content.component.html',
+  styleUrls: ['./post-detail-content.component.scss']
 })
-export class PostListPostComponent implements OnInit {
+export class PostDetailContentComponent implements OnInit {
 
   private _post: Post;
   @Input()
   get post(): Post { return this._post }
   set post(post: Post) {
     this._post = post;
-    this.routerLink = '/posts/' + post?.id + '/' + post?.slug;
-    this.content = this.sanitizer.bypassSecurityTrustHtml( post?.excerpt );
+    this.content = this.sanitizer.bypassSecurityTrustHtml( post?.content );
   }
 
-  routerLink: string;
   content: SafeHtml;
 
   constructor(
@@ -27,4 +25,5 @@ export class PostListPostComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 }
