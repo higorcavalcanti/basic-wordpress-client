@@ -6,7 +6,7 @@ import { PostsRequestOptions } from "../interfaces/posts-request-options";
 import { Post } from "../models/post";
 import { PostsResponse } from "../interfaces/posts-response";
 import { Observable, of } from "rxjs";
-import { tap, timeout } from "rxjs/operators";
+import { tap } from "rxjs/operators";
 import { isPlatformServer } from "@angular/common";
 
 @Injectable({
@@ -24,13 +24,8 @@ export class WordpressTransferStateService extends WordpressService {
 
 
   posts(options: PostsRequestOptions) {
-    const key = Object.entries( options ).map(([key, value]) => {
-      if ( key && value ) {
-        return [key, value].join('-');
-      }
-      return '';
-    }).join('|');
-    const KEY = makeStateKey<Post>('posts-' + key);
+    const params = WordpressService.getParams( options ).toString();
+    const KEY = makeStateKey<Post>('posts-' + params);
 
     if (this.transferState.hasKey(KEY)) {
       const posts = this.transferState.get<PostsResponse>(KEY, null);
@@ -53,7 +48,6 @@ export class WordpressTransferStateService extends WordpressService {
 
   private applyPipes<T>(observable: Observable<T>, KEY): Observable<T> {
     return observable.pipe(
-      timeout(5000),
       tap(post => {
         if (isPlatformServer(this.platformId)) {
           this.transferState.set(KEY, post);
