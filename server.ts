@@ -13,6 +13,9 @@ export function app(): express.Express {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/wordpress-client/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  const compression = require('compression')
+
+  server.use( compression() );
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
