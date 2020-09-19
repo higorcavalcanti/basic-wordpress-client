@@ -11,7 +11,9 @@
     "dev:ssr": "ng run wordpress-client:serve-ssr",
     "serve:ssr": "node dist/wordpress-client/server/main.js",
     "build:ssr": "ng build --prod && ng run wordpress-client:server:production",
-    "prerender": "ng run wordpress-client:prerender"
+    "prerender": "ng run wordpress-client:prerender",
+    "start:heroku":"node dist/wordpress-client/server/main",
+    "heroku-postbuild": "npm run build:ssr"
   },
   "private": true,
   "dependencies": {
