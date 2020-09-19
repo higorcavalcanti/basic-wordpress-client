@@ -1,3 +1,6 @@
+<div class="text-center mb-2" *ngIf="response?.data?.length">
+  Mostrando {{ itemsPerPage }} de {{ response?.size }} postagens
+</div>
 <pagination
   *ngIf="response?.size"
   [(ngModel)]="page"
